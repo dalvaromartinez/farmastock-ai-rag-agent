@@ -1,0 +1,22 @@
+# Entorno virtual
+.venv/
+
+# Variables de entorno
+.env
+
+# Base vectorial local
+chroma_db/
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db

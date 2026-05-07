@@ -1,0 +1,14 @@
+langchain
+langchain-core
+langchain-community
+langchain-google-genai
+langchain-chroma
+langchain-text-splitters
+langgraph
+chromadb
+python-dotenv
+pyyaml
+pandas
+ipykernel
+jupyter
+streamlit
