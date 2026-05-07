@@ -820,7 +820,7 @@ Actualmente la función `chatear` en el notebook y la interfaz Streamlit ya mues
 
 ---
 
-## 15. Conclusión
+## 16. Conclusión
 
 FarmaStock AI demuestra un MVP funcional de agente experto con IA generativa aplicado a un dominio concreto: la optimización de stock en farmacia comunitaria.
 
