@@ -1,6 +1,6 @@
-# FarmaStock AI
+# Stock Knowledge Assistant
 
-**FarmaStock AI** es un asistente experto desarrollado como proyecto final de IA Generativa. Su objetivo es responder preguntas sobre optimización de stock en farmacia comunitaria utilizando una arquitectura basada en **Gemini**, **RAG**, **ChromaDB**, **LangGraph** y **memoria conversacional**.
+**StockKnowledge** es un asistente experto desarrollado como proyecto final de IA Generativa. Su objetivo es responder preguntas sobre optimización de stock en farmacia comunitaria utilizando una arquitectura basada en **Gemini**, **RAG**, **ChromaDB**, **LangGraph** y **memoria conversacional**.
 
 El proyecto se ha implementado como un MVP funcional en notebook, con una base de conocimiento propia formada por documentos Markdown diseñados específicamente para alimentar un sistema RAG.
 
