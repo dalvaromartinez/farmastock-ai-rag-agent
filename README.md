@@ -1,25 +1,42 @@
 # FarmaStock Knowledge Assistant
 
-> RAG-based knowledge assistant for pharmacy stock-management concepts.
+> RAG-based knowledge assistant for pharmacy inventory management, built with Gemini, ChromaDB, LangGraph and Streamlit.
 
-**FarmaStock Knowledge Assistant** es un proyecto de portfolio de IA generativa orientado a la gestión logística de stock en farmacia comunitaria.
+Proyecto de portfolio de IA generativa orientado a la gestión logística de stock en farmacia comunitaria. Combina una base documental propia, recuperación semántica, generación aumentada por recuperación y una interfaz interactiva reproducible.
 
-El sistema utiliza una base documental propia, recuperación semántica con ChromaDB, Gemini para embeddings y generación, un workflow de dos nodos construido con LangGraph y una interfaz Streamlit.
+![FarmaStock Knowledge Assistant — Streamlit demo](docs/assets/farmastock-streamlit.png)
 
-El objetivo del proyecto es demostrar de forma práctica:
+## At a glance
 
-- procesamiento documental;
-- chunking con metadatos;
-- embeddings;
-- vector stores;
-- retrieval semántico;
-- Retrieval-Augmented Generation (RAG);
-- orquestación con LangGraph;
-- memoria conversacional temporal;
-- trazabilidad de las fuentes recuperadas;
-- construcción de una interfaz de demostración con Streamlit.
+- **4 documentos de dominio**
+- **41 secciones indexables**
+- **118 chunks trazables**
+- **Gemini embeddings + Gemini 2.5 Flash**
+- **ChromaDB** como vector store local
+- **LangGraph** para un workflow RAG determinista de dos nodos
+- **Memoria conversacional temporal** mediante `MemorySaver`
+- **Streamlit** como interfaz de demostración
+- **Bootstrap reproducible** mediante `build_index.py`
 
-El sistema **no es un agente autónomo**. El flujo es determinista y está formado por dos nodos principales: recuperación de contexto y generación de respuesta.
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Markdown knowledge base] --> B[Parsing + metadata filtering]
+    B --> C[Chunking]
+    C --> D[Gemini embeddings]
+    D --> E[(ChromaDB)]
+
+    Q[User question] --> F[retrieve_context<br/>Semantic retriever · k = 4]
+    E --> F
+    subgraph W[LangGraph workflow]
+        F --> G[generate_answer<br/>Gemini 2.5 Flash]
+    end
+    G --> I[Streamlit response]
+    M[MemorySaver<br/>Temporary conversation history] -.-> G
+```
+
+El workflow es determinista: `START → retrieve_context → generate_answer → END`. LangGraph aporta orquestación y checkpointing; no planificación autónoma. El retriever usa solo la pregunta actual y el historial temporal se incorpora durante la generación. Las fuentes mostradas son los fragmentos recuperados, no una prueba de procedencia de cada frase generada.
 
 ---
 
@@ -391,7 +408,7 @@ No reconstruye la base vectorial por sí sola.
 ## 11. Estructura del repositorio
 
 ```text
-farmastock-ai-rag-agent/
+farmastock-rag-assistant/
 │
 ├── app.py
 ├── build_index.py
@@ -430,8 +447,8 @@ Este directorio es local y está excluido mediante `.gitignore`.
 ### 1. Clonar el repositorio
 
 ```bash
-git clone <repository-url>
-cd farmastock-ai-rag-agent
+git clone https://github.com/dalvaromartinez/farmastock-rag-assistant.git
+cd farmastock-rag-assistant
 ```
 
 ### 2. Crear un entorno virtual
