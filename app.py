@@ -19,7 +19,7 @@ from langgraph.checkpoint.memory import MemorySaver
 # Configuración general
 # ============================================================
 
-PROJECT_NAME = "FarmaStock AI"
+PROJECT_NAME = "FarmaStock Knowledge Assistant"
 PROJECT_DOMAIN = "Optimización de stock en farmacia comunitaria"
 
 COLLECTION_NAME = "farmastock_ai_docs"
@@ -44,7 +44,7 @@ DATA_DIR = BASE_DIR / "data" / "raw"
 # ============================================================
 
 SYSTEM_PROMPT = """
-Eres FarmaStock AI, un asistente experto en análisis y optimización de stock en farmacia comunitaria.
+Eres FarmaStock Knowledge Assistant, un asistente experto en análisis y optimización de stock en farmacia comunitaria.
 
 Tu dominio está limitado a la gestión logística del inventario en farmacia comunitaria. Puedes responder preguntas sobre rotación, cobertura, stock mínimo, stock máximo, stock de seguridad, punto de pedido, demanda histórica, lead time, sobrestock, roturas, clasificación ABC/XYZ e interpretación de movimientos de inventario.
 
@@ -137,7 +137,7 @@ def load_components():
 
     Importante:
     - No reconstruye la base vectorial.
-    - Usa la colección persistente creada previamente desde el notebook.
+    - Usa la colección persistente creada previamente con build_index.py.
     """
     load_dotenv()
 
@@ -151,8 +151,9 @@ def load_components():
 
     if not CHROMA_DIR.exists():
         raise FileNotFoundError(
-            f"No se ha encontrado la carpeta ChromaDB en: {CHROMA_DIR}. "
-            "Ejecuta primero el notebook para crear la base vectorial."
+            "No se ha encontrado la carpeta local chroma_db. "
+            "Ejecuta `python build_index.py` desde la raíz del proyecto "
+            "antes de iniciar la aplicación."
         )
 
     embeddings = GoogleGenerativeAIEmbeddings(
@@ -276,8 +277,8 @@ def load_agent():
 
 def run_agent(app, mensaje: str, thread_id: str = "streamlit_demo") -> Dict[str, Any]:
     """
-    Ejecuta el agente con memoria conversacional por thread_id.
-    Recupera el historial previo del estado de LangGraph.
+    Ejecuta el workflow RAG con memoria conversacional temporal por thread_id.
+    Recupera el historial previo del estado de LangGraph mientras vive el proceso.
     """
     config = {
         "configurable": {
@@ -712,7 +713,7 @@ def render_hero():
         """
         <div class="fs-hero">
             <div class="fs-eyebrow">💊 MVP académico · Gemini · ChromaDB · LangGraph</div>
-            <h1 class="fs-title">FarmaStock AI</h1>
+            <h1 class="fs-title">FarmaStock Knowledge Assistant</h1>
             <div class="fs-subtitle">
                 Asistente RAG para optimización de stock en farmacia comunitaria.
                 Recupera contexto documental propio y genera respuestas sobre rotación,
@@ -735,7 +736,7 @@ def render_limit_banner():
         """
         <div class="fs-limit-banner">
             <strong>Ámbito de uso:</strong>
-            FarmaStock AI tiene un enfoque logístico y formativo.
+            FarmaStock Knowledge Assistant tiene un enfoque logístico y formativo.
             No proporciona consejo clínico, no recomienda medicamentos y no toma decisiones automáticas de compra.
         </div>
         """,
@@ -763,9 +764,11 @@ def render_info_cards():
             </div>
             <div class="fs-card">
                 <div class="fs-card-icon">🧠</div>
-                <div class="fs-card-title">Memoria conversacional</div>
+                <div class="fs-card-title">Memoria conversacional temporal</div>
                 <div class="fs-card-text">
-                    Mantiene el contexto entre turnos mediante LangGraph y thread_id.
+                    Conserva el historial por thread_id mientras vive el proceso.
+                    Ese historial se utiliza al generar la respuesta; el retriever
+                    consulta únicamente la pregunta actual.
                 </div>
             </div>
         </div>
@@ -813,7 +816,7 @@ def render_chat_message(role: str, content: str, sources: Optional[List[Dict[str
         label = "👤 Tú"
         css_class = "fs-chat-user"
     else:
-        label = "💊 FarmaStock AI"
+        label = "💊 FarmaStock Knowledge Assistant"
         css_class = "fs-chat-assistant"
 
     with st.container():
@@ -856,7 +859,7 @@ def extract_sources(result: Dict[str, Any]) -> List[Dict[str, str]]:
 # ============================================================
 
 st.set_page_config(
-    page_title="FarmaStock AI",
+    page_title="FarmaStock Knowledge Assistant",
     page_icon="💊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -888,10 +891,9 @@ try:
     collection_count = vectorstore._collection.count()
     agent_loaded = True
 
-except Exception as e:
+except Exception:
     agent_loaded = False
     collection_count = 0
-    load_error = e
 
 
 # ============================================================
@@ -899,7 +901,7 @@ except Exception as e:
 # ============================================================
 
 with st.sidebar:
-    st.markdown("## FarmaStock AI")
+    st.markdown("## FarmaStock Knowledge Assistant")
     st.caption("Panel técnico de la demo")
 
     st.markdown("---")
@@ -940,15 +942,16 @@ with st.sidebar:
 
     st.markdown("### Estado")
     if agent_loaded:
-        st.markdown('<span class="fs-pill">Agente cargado</span>', unsafe_allow_html=True)
+        st.markdown('<span class="fs-pill">Asistente cargado</span>', unsafe_allow_html=True)
         st.markdown('<span class="fs-pill">ChromaDB disponible</span>', unsafe_allow_html=True)
 
         if collection_count == 117:
-            st.markdown('<span class="fs-pill">Vectorstore validado</span>', unsafe_allow_html=True)
+            st.markdown('<span class="fs-pill">117 chunks cargados</span>', unsafe_allow_html=True)
         else:
             st.warning(
                 f"ChromaDB contiene {collection_count} chunks. "
-                "Se esperaban 117. Reconstruye la base desde el notebook si detectas duplicados."
+                "Con el corpus actual se esperan 117. "
+                "Reconstruye el índice ejecutando `python build_index.py`."
             )
     else:
         st.markdown('<span class="fs-pill">Error de carga</span>', unsafe_allow_html=True)
@@ -970,8 +973,12 @@ with st.sidebar:
 
 if not agent_loaded:
     render_hero()
-    st.error("No se ha podido cargar FarmaStock AI.")
-    st.exception(load_error)
+    st.error("No se ha podido cargar FarmaStock Knowledge Assistant.")
+    st.info(
+        "Comprueba que GOOGLE_API_KEY está configurada y que el índice local "
+        "ha sido creado. Si acabas de clonar el repositorio, ejecuta "
+        "`python build_index.py` antes de iniciar Streamlit."
+    )
     st.stop()
 
 
@@ -1040,7 +1047,8 @@ with right_col:
         <div class="fs-panel-static">
             <div class="fs-panel-title">Preguntas sugeridas</div>
             <div class="fs-panel-caption">
-                Diseñadas para demostrar recuperación documental, razonamiento, memoria y límites del agente.
+                Diseñadas para demostrar recuperación documental, razonamiento,
+                memoria temporal y límites del asistente.
             </div>
         </div>
         """,
@@ -1139,9 +1147,11 @@ if prompt_to_process:
 
             st.rerun()
 
-        except Exception as e:
-            st.error("Ha ocurrido un error al generar la respuesta.")
-            st.exception(e)
+        except Exception:
+            st.error(
+                "No se ha podido generar la respuesta. "
+                "Revisa la configuración de la API y vuelve a intentarlo."
+            )
 
 
 # ============================================================
@@ -1153,8 +1163,10 @@ st.markdown('<div class="fs-divider"></div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="fs-footer">
-        FarmaStock AI — MVP académico con Gemini, RAG, ChromaDB, LangGraph y memoria conversacional.
-        La interfaz Streamlit actúa como capa visual opcional sobre el notebook técnico ya validado.
+        FarmaStock Knowledge Assistant — MVP académico con Gemini, RAG, ChromaDB,
+        LangGraph y memoria conversacional temporal.
+        El índice local se genera con build_index.py; el notebook se mantiene
+        como espacio de experimentación, explicación técnica y evaluación.
     </div>
     """,
     unsafe_allow_html=True,

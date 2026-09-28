@@ -25,7 +25,7 @@ Delta = stock posterior - stock anterior
 
 Ejemplo sencillo: si antes de un movimiento había 10 unidades y después quedan 7, el delta es -3. Eso indica una salida neta de 3 unidades. Si antes había 10 y después quedan 15, el delta es +5. Eso indica una entrada neta o corrección positiva de 5 unidades.
 
-La advertencia principal es que no siempre las unidades del movimiento equivalen directamente al delta real. En algunos tipos de movimiento, especialmente modificaciones manuales o recuentos, el campo de unidades puede representar el stock fijado o el valor resultante, no necesariamente la cantidad que ha entrado o salido. Por eso, FarmaStock AI debe interpretar cada movimiento según su tipo y no asumir que todos los campos significan lo mismo.
+La advertencia principal es que no siempre las unidades del movimiento equivalen directamente al delta real. En algunos tipos de movimiento, especialmente modificaciones manuales o recuentos, el campo de unidades puede representar el stock fijado o el valor resultante, no necesariamente la cantidad que ha entrado o salido. Por eso, FarmaStock Knowledge Assistant debe interpretar cada movimiento según su tipo y no asumir que todos los campos significan lo mismo.
 
 ## 2. Movimientos de venta
 
@@ -43,7 +43,7 @@ Stock posterior esperado = stock anterior - unidades vendidas
 
 Los movimientos de venta ayudan a calcular la demanda histórica, pero deben revisarse con cuidado. Puede haber anulaciones, devoluciones, errores de registro o ventas corregidas. También puede haber diferencias entre el momento comercial de la venta y el momento en que el stock se actualiza en el sistema.
 
-La advertencia principal es que no toda salida de stock debe interpretarse como venta real para demanda futura. Una anulación, una devolución corregida, una regularización negativa o una retirada no representan necesariamente demanda ordinaria. FarmaStock AI debe distinguir entre venta operativa válida y otros movimientos de salida cuando el objetivo sea calcular demanda o reposición.
+La advertencia principal es que no toda salida de stock debe interpretarse como venta real para demanda futura. Una anulación, una devolución corregida, una regularización negativa o una retirada no representan necesariamente demanda ordinaria. FarmaStock Knowledge Assistant debe distinguir entre venta operativa válida y otros movimientos de salida cuando el objetivo sea calcular demanda o reposición.
 
 ## 3. Movimientos de compra o entrada
 
@@ -61,7 +61,7 @@ Ejemplo sencillo: si un producto tenía 5 unidades y se reciben 10 unidades, el 
 
 Los movimientos de entrada también son útiles para estimar plazos de reposición si se conoce la relación entre pedido y recepción. Sin embargo, en muchos análisis básicos solo se dispone del movimiento de entrada y no del pedido original. En ese caso, puede saberse que el stock aumentó, pero no calcular con precisión el tiempo de reposición.
 
-La advertencia principal es que no toda entrada debe interpretarse como compra ordinaria. Un ajuste positivo, una devolución de unidades, una regularización tras recuento o una modificación manual pueden aumentar el stock sin representar una compra real. FarmaStock AI debe explicar esta diferencia y evitar inferir compras si el tipo de movimiento no lo confirma.
+La advertencia principal es que no toda entrada debe interpretarse como compra ordinaria. Un ajuste positivo, una devolución de unidades, una regularización tras recuento o una modificación manual pueden aumentar el stock sin representar una compra real. FarmaStock Knowledge Assistant debe explicar esta diferencia y evitar inferir compras si el tipo de movimiento no lo confirma.
 
 ## 4. Recuentos de inventario
 
@@ -100,7 +100,7 @@ Ajuste negativo = reducción del stock por regularización
 
 Los ajustes deben analizarse porque pueden indicar problemas de calidad del dato. Si un producto presenta muchos ajustes, puede haber errores recurrentes en ventas, entradas, ubicación, recuentos o manipulación del inventario. Estos productos pueden requerir revisión manual prioritaria.
 
-La advertencia principal es que los ajustes no deben usarse sin control para reconstruir demanda. Un ajuste negativo no equivale a venta, y un ajuste positivo no equivale a compra. FarmaStock AI debe tratar los ajustes como regularizaciones, no como movimientos comerciales ordinarios, salvo que el contexto indique claramente otra cosa.
+La advertencia principal es que los ajustes no deben usarse sin control para reconstruir demanda. Un ajuste negativo no equivale a venta, y un ajuste positivo no equivale a compra. FarmaStock Knowledge Assistant debe tratar los ajustes como regularizaciones, no como movimientos comerciales ordinarios, salvo que el contexto indique claramente otra cosa.
 
 ## 6. Modificaciones manuales
 
@@ -122,7 +122,7 @@ Otro ejemplo: si antes había 20 unidades y después de una modificación manual
 
 Las modificaciones manuales son útiles para corregir errores, pero si aparecen con mucha frecuencia pueden reducir la fiabilidad del histórico. También pueden dificultar la reconstrucción de compras, ventas o demanda si no se separan correctamente de los movimientos operativos ordinarios.
 
-La advertencia principal es que FarmaStock AI no debe interpretar una modificación manual como compra, venta o demanda sin más información. Si no se conoce el stock anterior o el stock posterior, no se puede calcular el delta con seguridad. En ese caso, el agente debe indicar qué dato falta.
+La advertencia principal es que FarmaStock Knowledge Assistant no debe interpretar una modificación manual como compra, venta o demanda sin más información. Si no se conoce el stock anterior o el stock posterior, no se puede calcular el delta con seguridad. En ese caso, el agente debe indicar qué dato falta.
 
 ## 7. Devoluciones y anulaciones
 
@@ -142,7 +142,7 @@ Si una venta de -2 se anula con una corrección de +2, el efecto neto sobre el s
 
 Las devoluciones y anulaciones son importantes para la limpieza de datos. Si no se tratan correctamente, pueden inflar o reducir artificialmente la demanda. También pueden alterar la interpretación de coberturas, rotaciones y riesgos de rotura.
 
-La advertencia principal es que no toda devolución debe tratarse igual. Hay que conocer si devuelve unidades al inventario, si sale del inventario, si corrige una operación previa o si representa una regularización. FarmaStock AI debe mantener una interpretación prudente si el tipo de devolución o anulación no está claramente definido.
+La advertencia principal es que no toda devolución debe tratarse igual. Hay que conocer si devuelve unidades al inventario, si sale del inventario, si corrige una operación previa o si representa una regularización. FarmaStock Knowledge Assistant debe mantener una interpretación prudente si el tipo de devolución o anulación no está claramente definido.
 
 ## 8. Stock resultante tras cada movimiento
 
@@ -166,7 +166,7 @@ Ejemplo sencillo: un producto tiene estos cambios: empieza con 10 unidades, se v
 
 El stock resultante ayuda a detectar inconsistencias. Si una venta de 3 unidades no reduce el stock, puede haber otro movimiento simultáneo, una corrección, una reserva, un error de registro o una particularidad del sistema. Si una entrada no aumenta el stock, también conviene revisar el contexto.
 
-La advertencia principal es que el stock resultante solo es fiable si los movimientos están completos y bien ordenados. Si faltan movimientos, si hay registros duplicados o si la fecha no representa el orden real de actualización, el análisis puede ser incorrecto. FarmaStock AI debe pedir más información si la secuencia no es suficiente.
+La advertencia principal es que el stock resultante solo es fiable si los movimientos están completos y bien ordenados. Si faltan movimientos, si hay registros duplicados o si la fecha no representa el orden real de actualización, el análisis puede ser incorrecto. FarmaStock Knowledge Assistant debe pedir más información si la secuencia no es suficiente.
 
 ## 9. Diferencia entre informes comerciales y movimientos operativos
 
@@ -185,11 +185,11 @@ Movimiento operativo = evento que modifica o confirma el stock
 
 Un problema frecuente es usar ventas comerciales agregadas como si fueran movimientos de inventario completos. Esto puede llevar a errores si hay devoluciones, anulaciones, correcciones, descuentos, cambios de presentación o diferencias de registro. También puede ocurrir lo contrario: usar movimientos operativos para hacer análisis comercial sin tener importes, categorías o información económica suficiente.
 
-La advertencia principal es que FarmaStock AI debe identificar el objetivo de la pregunta. Si la pregunta trata sobre demanda, cobertura o reconstrucción de stock, deben priorizarse movimientos operativos. Si trata sobre facturación o análisis económico, harían falta datos comerciales adicionales. Este documento se centra en el análisis logístico del inventario.
+La advertencia principal es que FarmaStock Knowledge Assistant debe identificar el objetivo de la pregunta. Si la pregunta trata sobre demanda, cobertura o reconstrucción de stock, deben priorizarse movimientos operativos. Si trata sobre facturación o análisis económico, harían falta datos comerciales adicionales. Este documento se centra en el análisis logístico del inventario.
 
-## 10. Reglas de negocio para FarmaStock AI
+## 10. Reglas de negocio para FarmaStock Knowledge Assistant
 
-Las reglas de negocio son criterios explícitos que ayudan al agente a interpretar movimientos de stock de forma consistente. En FarmaStock AI, estas reglas se orientan al análisis logístico y formativo del inventario, no a decisiones clínicas ni comerciales cerradas.
+Las reglas de negocio son criterios explícitos que ayudan al agente a interpretar movimientos de stock de forma consistente. En FarmaStock Knowledge Assistant, estas reglas se orientan al análisis logístico y formativo del inventario, no a decisiones clínicas ni comerciales cerradas.
 
 Reglas principales:
 
@@ -208,7 +208,7 @@ Reglas principales:
 
 Estas reglas permiten que el agente mantenga coherencia al responder. Por ejemplo, si se pregunta por una modificación manual, el agente debe explicar que necesita stock anterior y stock posterior para calcular el delta. Si se pregunta por una venta, puede explicar que normalmente reduce stock y alimenta demanda histórica. Si se pregunta por un ajuste, debe advertir que no equivale necesariamente a demanda.
 
-Ejemplo sencillo: si un registro muestra una modificación manual con stock anterior de 7 y stock posterior de 10, FarmaStock AI debe interpretar un delta de +3, no una compra de 10 unidades.
+Ejemplo sencillo: si un registro muestra una modificación manual con stock anterior de 7 y stock posterior de 10, FarmaStock Knowledge Assistant debe interpretar un delta de +3, no una compra de 10 unidades.
 
 La advertencia principal es que las reglas de negocio dependen de la estructura del sistema de datos. Si un sistema de gestión utiliza nombres distintos o campos con significados diferentes, las reglas deben adaptarse. Por eso, ante dudas, el agente debe pedir aclaración sobre columnas, tipo de movimiento y significado de los campos.
 
@@ -224,15 +224,15 @@ Otros errores comunes son no ordenar movimientos por fecha, ignorar anulaciones,
 
 Ejemplo sencillo: si se suman ventas, anulaciones y ajustes negativos como si todos fueran demanda, la demanda histórica quedará distorsionada. Esto puede provocar puntos de pedido demasiado altos o conclusiones equivocadas sobre la rotación.
 
-La advertencia principal es que un histórico de movimientos necesita limpieza antes de alimentar cálculos. FarmaStock AI puede explicar reglas y detectar posibles errores conceptuales, pero no debe asumir que un dataset está limpio si no se han validado tipos de movimiento, orden temporal, duplicados y significado de columnas.
+La advertencia principal es que un histórico de movimientos necesita limpieza antes de alimentar cálculos. FarmaStock Knowledge Assistant puede explicar reglas y detectar posibles errores conceptuales, pero no debe asumir que un dataset está limpio si no se han validado tipos de movimiento, orden temporal, duplicados y significado de columnas.
 
 ## 12. Límites del agente al interpretar movimientos
 
-FarmaStock AI puede ayudar a explicar e interpretar movimientos de stock desde una perspectiva logística, pero tiene límites claros. No debe inventar datos, causas ni cantidades. Si no dispone de stock anterior, stock posterior, tipo de movimiento o fecha, debe indicar que la interpretación es incompleta.
+FarmaStock Knowledge Assistant puede ayudar a explicar e interpretar movimientos de stock desde una perspectiva logística, pero tiene límites claros. No debe inventar datos, causas ni cantidades. Si no dispone de stock anterior, stock posterior, tipo de movimiento o fecha, debe indicar que la interpretación es incompleta.
 
 El agente tampoco debe reconstruir un inventario completo a partir de un movimiento aislado. Para reconstruir la evolución de stock se necesita una secuencia ordenada de movimientos. Un único registro puede dar pistas, pero no permite conocer todo el contexto.
 
-FarmaStock AI no debe interpretar movimientos como consejo clínico ni hacer recomendaciones relacionadas con tratamientos. Tampoco debe usar datos reales sensibles ni información identificable de personas, proveedores, operaciones comerciales reales o una farmacia concreta. Los ejemplos deben ser genéricos o sintéticos. Si se menciona un sistema de gestión, debe hacerse de forma genérica, como ejemplo de software que registra movimientos de inventario.
+FarmaStock Knowledge Assistant no debe interpretar movimientos como consejo clínico ni hacer recomendaciones relacionadas con tratamientos. Tampoco debe usar datos reales sensibles ni información identificable de personas, proveedores, operaciones comerciales reales o una farmacia concreta. Los ejemplos deben ser genéricos o sintéticos. Si se menciona un sistema de gestión, debe hacerse de forma genérica, como ejemplo de software que registra movimientos de inventario.
 
 Ejemplo sencillo: si se pregunta “este movimiento tiene unidades 15, ¿es una compra?”, el agente no puede responder con seguridad si no conoce el tipo de movimiento y si esas unidades representan cantidad movida o stock final. La respuesta correcta sería explicar qué datos faltan y cómo se interpretaría cada caso.
 
@@ -263,4 +263,4 @@ Preguntas que puede responder:
 - ¿Cómo se reconstruye la evolución de stock de un producto?
 - ¿Qué errores son frecuentes al interpretar movimientos?
 - ¿Qué datos faltan para interpretar correctamente una modificación manual?
-- ¿Qué límites tiene FarmaStock AI al analizar movimientos de stock?
+- ¿Qué límites tiene FarmaStock Knowledge Assistant al analizar movimientos de stock?

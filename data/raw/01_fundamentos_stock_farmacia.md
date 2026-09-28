@@ -127,7 +127,7 @@ También hay productos cuyo comportamiento no se explica bien con una única mé
 
 Ejemplo sencillo: si se pregunta “¿cuánto debería comprar de este producto?” pero solo se aporta el stock actual, el análisis es insuficiente. Para responder con mayor seguridad harían falta ventas recientes, demanda histórica, plazo de reposición, stock de seguridad, caducidad y criterio de priorización.
 
-FarmaStock AI debe respetar estos límites. No debe dar consejo clínico, recomendar tratamientos, identificar personas usuarias, usar datos reales sensibles ni tomar decisiones automáticas de compra. Si el contexto recuperado no contiene información suficiente, debe indicarlo claramente. Su función es explicar conceptos, señalar riesgos, ayudar a interpretar métricas y orientar la revisión del inventario desde una perspectiva logística y formativa.
+FarmaStock Knowledge Assistant debe respetar estos límites. No debe dar consejo clínico, recomendar tratamientos, identificar personas usuarias, usar datos reales sensibles ni tomar decisiones automáticas de compra. Si el contexto recuperado no contiene información suficiente, debe indicarlo claramente. Su función es explicar conceptos, señalar riesgos, ayudar a interpretar métricas y orientar la revisión del inventario desde una perspectiva logística y formativa.
 
 ## 10. Preguntas que puede responder este documento
 

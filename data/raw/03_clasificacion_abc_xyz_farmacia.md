@@ -15,7 +15,7 @@ La segmentación de productos consiste en clasificar las referencias del inventa
 
 La idea principal de la segmentación es que no todos los productos deben gestionarse igual. Aplicar la misma política de stock a todas las referencias puede generar problemas: exceso de unidades en productos de baja salida, riesgo de rotura en productos importantes, mínimos mal ajustados o revisiones poco eficientes. La segmentación permite priorizar la atención y adaptar los criterios de reposición según la importancia y la regularidad de la demanda.
 
-En FarmaStock AI, la clasificación ABC/XYZ se utiliza como herramienta de apoyo para interpretar el inventario. No sustituye al análisis de cobertura, rotación, punto de pedido o lead time, sino que los complementa. Su objetivo es ayudar a responder preguntas como qué productos deberían revisarse primero, qué referencias pueden necesitar más vigilancia o qué productos podrían estar generando sobrestock.
+En FarmaStock Knowledge Assistant, la clasificación ABC/XYZ se utiliza como herramienta de apoyo para interpretar el inventario. No sustituye al análisis de cobertura, rotación, punto de pedido o lead time, sino que los complementa. Su objetivo es ayudar a responder preguntas como qué productos deberían revisarse primero, qué referencias pueden necesitar más vigilancia o qué productos podrían estar generando sobrestock.
 
 Ejemplo sencillo: un producto que se vende todos los días y tiene importancia alta para la actividad de la farmacia no debería revisarse igual que un producto que se vende una vez cada varios meses. Aunque ambos tengan stock disponible, su prioridad de revisión es distinta.
 
@@ -51,7 +51,7 @@ En un enfoque logístico, los productos A pueden ser aquellos cuya falta genera 
 
 Ejemplo sencillo: un producto de alta rotación que se repone con frecuencia puede clasificarse como A por volumen de salida. En cambio, un producto con ventas muy esporádicas puede clasificarse como C, aunque tenga unidades disponibles. El primero puede requerir vigilancia de cobertura; el segundo puede requerir revisión de sobrestock o caducidad.
 
-La advertencia principal es que ABC no debe usarse de forma clínica ni terapéutica. La clasificación se aplica a la gestión del inventario, no a la recomendación de productos. FarmaStock AI debe mantener el enfoque en disponibilidad, rotación, cobertura, reposición y control de stock.
+La advertencia principal es que ABC no debe usarse de forma clínica ni terapéutica. La clasificación se aplica a la gestión del inventario, no a la recomendación de productos. FarmaStock Knowledge Assistant debe mantener el enfoque en disponibilidad, rotación, cobertura, reposición y control de stock.
 
 ## 4. Clasificación XYZ
 
@@ -87,7 +87,7 @@ La matriz conceptual puede representarse así:
 
 Esta matriz permite entender que dos productos con la misma importancia ABC pueden necesitar políticas distintas si su demanda es diferente. Un producto AX suele ser importante y previsible. Un producto AZ también es importante, pero mucho más difícil de anticipar. Del mismo modo, un producto CX puede tener baja importancia, pero demanda estable; mientras que un CZ puede tener baja importancia y demanda irregular, lo que puede aumentar el riesgo de sobrestock si se acumulan demasiadas unidades.
 
-En FarmaStock AI, la matriz ABC/XYZ sirve para priorizar revisiones y explicar criterios de gestión. No sustituye a la cobertura ni al punto de pedido, pero ayuda a interpretar por qué un producto puede necesitar vigilancia estrecha, revisión periódica o control de inmovilizado.
+En FarmaStock Knowledge Assistant, la matriz ABC/XYZ sirve para priorizar revisiones y explicar criterios de gestión. No sustituye a la cobertura ni al punto de pedido, pero ayuda a interpretar por qué un producto puede necesitar vigilancia estrecha, revisión periódica o control de inmovilizado.
 
 Ejemplo sencillo: si dos productos son A, pero uno es X y otro es Z, no deberían gestionarse igual. El AX puede funcionar mejor con reposición basada en demanda media. El AZ requiere más cautela porque su demanda irregular puede provocar tanto roturas puntuales como exceso de stock.
 
@@ -119,7 +119,7 @@ Un producto BZ tiene importancia media y demanda irregular. Puede no requerir re
 
 Ejemplo sencillo: un producto BY puede tener ventas moderadas durante la mayor parte del año y aumentar en determinados meses. Si se analiza solo con una media anual, puede infravalorarse la necesidad en los periodos de mayor demanda o sobreestimarse fuera de ellos.
 
-La advertencia principal es que la importancia intermedia no significa ausencia de riesgo. Un producto B puede provocar incidencias si tiene baja cobertura, reposición lenta o demanda variable. FarmaStock AI debe evitar respuestas simplistas como “B es prioridad media” sin revisar el resto de métricas.
+La advertencia principal es que la importancia intermedia no significa ausencia de riesgo. Un producto B puede provocar incidencias si tiene baja cobertura, reposición lenta o demanda variable. FarmaStock Knowledge Assistant debe evitar respuestas simplistas como “B es prioridad media” sin revisar el resto de métricas.
 
 ## 8. Interpretación de productos CX, CY y CZ
 
@@ -169,7 +169,7 @@ El cuarto límite es que la matriz no incorpora todo. No incluye automáticament
 
 Ejemplo sencillo: un producto clasificado como C puede tener baja venta, pero si tiene reposición difícil o se quiere mantener por disponibilidad del producto, puede requerir más atención que otros productos C.
 
-FarmaStock AI debe presentar ABC/XYZ como apoyo a la revisión, no como verdad absoluta. Si faltan datos o el contexto no es suficiente, debe indicarlo. La clasificación ayuda a preguntar mejor, priorizar mejor y revisar mejor, pero no debe sustituir la revisión humana.
+FarmaStock Knowledge Assistant debe presentar ABC/XYZ como apoyo a la revisión, no como verdad absoluta. Si faltan datos o el contexto no es suficiente, debe indicarlo. La clasificación ayuda a preguntar mejor, priorizar mejor y revisar mejor, pero no debe sustituir la revisión humana.
 
 ## 11. Preguntas que puede responder este documento
 
