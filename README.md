@@ -162,18 +162,18 @@ Cada chunk conserva metadatos de trazabilidad como:
 - `contains_real_data`;
 - `use_in_rag`.
 
-Con el corpus actual y esta configuración se generan **117 chunks**:
+Con el corpus actual y esta configuración se generan **118 chunks**:
 
 ```text
 01_fundamentos_stock_farmacia       27
 02_metricas_reposicion_farmacia     27
 03_clasificacion_abc_xyz_farmacia   29
-04_interpretacion_movimientos_stock  34
+04_interpretacion_movimientos_stock  35
 ---------------------------------------
-Total                              117
+Total                              118
 ```
 
-La integridad del índice no se valida únicamente contra el número 117. `build_index.py` compara dinámicamente los registros persistidos en ChromaDB con `len(chunks)` y aborta si no coinciden.
+La integridad del índice no se valida únicamente contra el número 118. `build_index.py` compara dinámicamente los registros persistidos en ChromaDB con `len(chunks)` y aborta si no coinciden.
 
 ---
 
@@ -488,7 +488,7 @@ El script:
 8. reconstruye ChromaDB;
 9. valida que el número persistido coincida con los chunks generados.
 
-Con el corpus actual se esperan 117 chunks.
+Con el corpus actual se esperan 118 chunks.
 
 ### 6. Ejecutar Streamlit
 

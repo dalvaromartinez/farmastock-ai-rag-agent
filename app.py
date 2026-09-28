@@ -945,12 +945,12 @@ with st.sidebar:
         st.markdown('<span class="fs-pill">Asistente cargado</span>', unsafe_allow_html=True)
         st.markdown('<span class="fs-pill">ChromaDB disponible</span>', unsafe_allow_html=True)
 
-        if collection_count == 117:
-            st.markdown('<span class="fs-pill">117 chunks cargados</span>', unsafe_allow_html=True)
+        if collection_count == 118:
+            st.markdown('<span class="fs-pill">118 chunks cargados</span>', unsafe_allow_html=True)
         else:
             st.warning(
                 f"ChromaDB contiene {collection_count} chunks. "
-                "Con el corpus actual se esperan 117. "
+                "Con el corpus actual se esperan 118. "
                 "Reconstruye el índice ejecutando `python build_index.py`."
             )
     else:
@@ -1000,7 +1000,7 @@ left_col, right_col = st.columns([1.45, 0.85], gap="large")
 with left_col:
     render_section_title(
         "Chat",
-        "Pregunta al asistente sobre gestión logística de stock. El agente recupera contexto documental antes de responder.",
+        "Pregunta al asistente sobre gestión logística de stock. El asistente recupera contexto documental antes de responder.",
     )
 
     if not st.session_state.messages:
