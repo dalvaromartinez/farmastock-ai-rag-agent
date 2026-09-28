@@ -1,14 +1,13 @@
-langchain
-langchain-core
-langchain-community
-langchain-google-genai
-langchain-chroma
-langchain-text-splitters
-langgraph
-chromadb
-python-dotenv
-pyyaml
-pandas
-ipykernel
-jupyter
-streamlit
+chromadb==1.5.9
+langchain-chroma==1.1.0
+langchain-core==1.6.5
+langchain-google-genai==4.4.0
+langchain-text-splitters==1.1.2
+langgraph==1.2.12
+python-dotenv==1.2.3
+PyYAML==6.0.3
+streamlit==1.64.0
+
+# Notebook / development
+ipykernel==7.3.0
+jupyter==1.1.1

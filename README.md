@@ -625,9 +625,7 @@ ipykernel
 jupyter
 ```
 
-El archivo `requirements.txt` todavía no fija versiones.
-
-Las versiones se congelarán después de completar una ejecución limpia end-to-end en un entorno reproducible.
+`requirements.txt` fija las dependencias directas a las versiones utilizadas en la ejecución limpia de validación con Python 3.14.0. Las dependencias transitivas se dejan a cargo del resolvedor de pip, en lugar de versionarse mediante un freeze completo.
 
 ---
 
