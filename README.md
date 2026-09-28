@@ -408,7 +408,7 @@ No reconstruye la base vectorial por sí sola.
 ## 11. Estructura del repositorio
 
 ```text
-farmastock-ai-rag-agent/
+farmastock-rag-assistant/
 │
 ├── app.py
 ├── build_index.py
@@ -447,8 +447,8 @@ Este directorio es local y está excluido mediante `.gitignore`.
 ### 1. Clonar el repositorio
 
 ```bash
-git clone <repository-url>
-cd farmastock-ai-rag-agent
+git clone https://github.com/dalvaromartinez/farmastock-rag-assistant.git
+cd farmastock-rag-assistant
 ```
 
 ### 2. Crear un entorno virtual
