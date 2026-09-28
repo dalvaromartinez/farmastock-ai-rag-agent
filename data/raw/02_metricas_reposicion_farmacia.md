@@ -19,7 +19,7 @@ Las métricas de reposición sirven para pasar de una revisión intuitiva a una 
 
 Ejemplo sencillo: dos productos pueden tener 6 unidades disponibles. En el primero se vende una unidad al mes, por lo que el stock puede ser suficiente durante bastante tiempo. En el segundo se venden 3 unidades al día, por lo que esas 6 unidades pueden agotarse en poco tiempo. El dato de stock es el mismo, pero la interpretación es completamente diferente.
 
-El límite principal de las métricas es que dependen de la calidad de los datos. Si las ventas no están bien registradas, si el stock teórico no coincide con el físico o si se desconoce el plazo de reposición, las conclusiones pueden ser incompletas. FarmaStock AI debe usar las métricas como apoyo analítico, no como una herramienta para ordenar compras automáticas.
+El límite principal de las métricas es que dependen de la calidad de los datos. Si las ventas no están bien registradas, si el stock teórico no coincide con el físico o si se desconoce el plazo de reposición, las conclusiones pueden ser incompletas. FarmaStock Knowledge Assistant debe usar las métricas como apoyo analítico, no como una herramienta para ordenar compras automáticas.
 
 ## 2. Demanda histórica
 
@@ -73,7 +73,7 @@ Ejemplo sencillo: si un producto tiene 24 unidades disponibles y una venta media
 
 La cobertura también permite detectar posibles excesos. Si un producto tiene una cobertura de 300 días y no hay una razón logística que lo justifique, puede ser candidato a revisión por sobrestock. Sin embargo, una cobertura alta no siempre es negativa. Puede estar justificada por campañas, compras planificadas, vida útil larga o dificultad de reposición.
 
-El límite principal es que la cobertura depende de la venta media utilizada. Si el periodo de cálculo no es representativo, la cobertura tampoco lo será. FarmaStock AI debe explicar la cobertura como una estimación, no como una certeza.
+El límite principal es que la cobertura depende de la venta media utilizada. Si el periodo de cálculo no es representativo, la cobertura tampoco lo será. FarmaStock Knowledge Assistant debe explicar la cobertura como una estimación, no como una certeza.
 
 ## 5. Lead time o plazo de reposición
 
@@ -107,7 +107,7 @@ Ejemplo sencillo: si un producto vende de media 2 unidades al día y el plazo de
 
 En farmacia comunitaria, el punto de pedido aplicado debe ajustarse según el tipo de producto. Productos de alta rotación, demanda estable y reposición rápida pueden tener puntos de pedido más ajustados. Productos con demanda irregular, reposición lenta o mayor impacto operativo pueden necesitar un margen de seguridad superior.
 
-La advertencia principal es que el punto de pedido no debe aplicarse como fórmula rígida. Si la demanda media está distorsionada, si el producto es estacional, si hay problemas de suministro o si el stock registrado no es fiable, el cálculo puede ser insuficiente. FarmaStock AI puede explicar el criterio y la fórmula, pero no debe inventar cantidades ni tomar decisiones automáticas de compra.
+La advertencia principal es que el punto de pedido no debe aplicarse como fórmula rígida. Si la demanda media está distorsionada, si el producto es estacional, si hay problemas de suministro o si el stock registrado no es fiable, el cálculo puede ser insuficiente. FarmaStock Knowledge Assistant puede explicar el criterio y la fórmula, pero no debe inventar cantidades ni tomar decisiones automáticas de compra.
 
 ## 7. Detección de riesgo de rotura
 
@@ -145,7 +145,7 @@ El periodo razonable de revisión depende del tipo de producto. No puede fijarse
 
 Ejemplo sencillo: si un producto tiene 80 unidades disponibles y vende 2 unidades al mes, la cobertura aproximada es muy elevada. Si no existe una campaña prevista, una justificación logística o una vida útil suficientemente larga, puede ser candidato a revisión por sobrestock.
 
-La advertencia principal es que una cobertura alta no debe clasificarse automáticamente como error. Puede estar justificada en algunos casos. FarmaStock AI debe proponer revisión, no dictar una conclusión cerrada. Conviene revisar demanda, caducidad, motivo de acumulación, comportamiento histórico y política de stock.
+La advertencia principal es que una cobertura alta no debe clasificarse automáticamente como error. Puede estar justificada en algunos casos. FarmaStock Knowledge Assistant debe proponer revisión, no dictar una conclusión cerrada. Conviene revisar demanda, caducidad, motivo de acumulación, comportamiento histórico y política de stock.
 
 ## 9. Priorización de revisión manual
 
@@ -171,7 +171,7 @@ El límite principal es que la priorización depende del objetivo de la revisió
 
 ## 10. Datos necesarios antes de recomendar reposición
 
-Antes de recomendar una reposición, es necesario reunir un conjunto mínimo de datos. Sin esta información, cualquier recomendación cuantitativa puede ser poco fiable. FarmaStock AI debe ser especialmente cuidadoso en este punto: puede explicar qué revisar, pero no debe inventar cantidades ni asumir datos no disponibles.
+Antes de recomendar una reposición, es necesario reunir un conjunto mínimo de datos. Sin esta información, cualquier recomendación cuantitativa puede ser poco fiable. FarmaStock Knowledge Assistant debe ser especialmente cuidadoso en este punto: puede explicar qué revisar, pero no debe inventar cantidades ni asumir datos no disponibles.
 
 Los datos más importantes son: stock disponible, stock físico si hay dudas, ventas recientes, demanda histórica, venta media diaria o semanal, lead time, stock de seguridad, punto de pedido actual, stock mínimo configurado, regularidad de la demanda, posible estacionalidad, fecha de caducidad, incidencias de suministro y clasificación ABC/XYZ si está disponible.
 
@@ -211,5 +211,5 @@ Preguntas que puede responder:
 - ¿Qué productos debería revisar primero?
 - ¿Qué diferencia hay entre priorizar por riesgo de rotura y priorizar por sobrestock?
 - ¿Qué datos faltan antes de recomendar una reposición?
-- ¿Por qué FarmaStock AI no debe inventar cantidades de compra?
+- ¿Por qué FarmaStock Knowledge Assistant no debe inventar cantidades de compra?
 - ¿Por qué las métricas no sustituyen la revisión humana?
